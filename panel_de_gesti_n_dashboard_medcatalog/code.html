@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>User Management Panel | MedCatalog</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        /* Custom scrollbar for clinical feel */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #c2c6d4; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #727784; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#2e3132",
+                        "primary-fixed-dim": "#acc7ff",
+                        "surface-container-low": "#f3f4f5",
+                        "on-tertiary-container": "#6ddff7",
+                        "tertiary-fixed-dim": "#62d6ed",
+                        "on-secondary-fixed": "#002106",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#001a40",
+                        "on-tertiary-fixed-variant": "#004e5a",
+                        "surface-container-highest": "#e1e3e4",
+                        "outline-variant": "#c2c6d4",
+                        "secondary-fixed": "#83fc8e",
+                        "tertiary-container": "#006270",
+                        "primary-fixed": "#d7e2ff",
+                        "surface-container-high": "#e7e8e9",
+                        "inverse-primary": "#acc7ff",
+                        "on-primary-fixed-variant": "#004491",
+                        "surface-tint": "#115cb9",
+                        "surface-variant": "#e1e3e4",
+                        "primary-container": "#0056b3",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#66df75",
+                        "on-background": "#191c1d",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#d9dadb",
+                        "secondary-container": "#80f98b",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed-variant": "#00531a",
+                        "primary": "#003f87",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#a4eeff",
+                        "background": "#f8f9fa",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#424752",
+                        "on-surface": "#191c1d",
+                        "surface-container": "#edeeef",
+                        "surface": "#f8f9fa",
+                        "inverse-on-surface": "#f0f1f2",
+                        "outline": "#727784",
+                        "tertiary": "#004954",
+                        "surface-bright": "#f8f9fa",
+                        "on-primary-container": "#bbd0ff",
+                        "secondary": "#006e25",
+                        "on-tertiary-fixed": "#001f25",
+                        "on-secondary-container": "#007327"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "xs": "4px",
+                        "xl": "80px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "margin-mobile": "16px",
+                        "sm": "12px",
+                        "lg": "48px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "display": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "display": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Top Navigation Bar -->
+<header class="bg-surface border-b border-outline-variant fixed top-0 w-full z-50">
+<div class="flex justify-between items-center w-full px-margin-desktop py-base max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-md">
+<span class="font-headline-md text-headline-md font-bold text-primary">MedCatalog</span>
+<nav class="hidden md:flex items-center gap-gutter ml-gutter">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Catalog</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Safety Tools</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Logistics</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Compliance</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">About</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-base top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
+<input class="bg-surface-container-high border-none rounded-lg pl-xl pr-base py-xs w-64 focus:ring-2 focus:ring-primary text-body-md" placeholder="Search drug registry..." type="text"/>
+</div>
+<button class="flex items-center gap-xs px-base py-xs rounded-lg bg-surface-container-high text-primary font-label-md transition-all active:opacity-80">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+                    Dr. Jane Doe
+                </button>
+</div>
+</div>
+</header>
+<main class="pt-[80px] min-h-screen">
+<!-- Content Wrapper -->
+<div class="max-w-screen-2xl mx-auto px-margin-desktop py-lg grid grid-cols-12 gap-gutter">
+<!-- Sidebar / Identity Section -->
+<aside class="col-span-12 lg:col-span-3 space-y-md">
+<!-- Profile Card -->
+<div class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant shadow-sm text-center">
+<div class="relative w-24 h-24 mx-auto mb-base">
+<div class="w-full h-full rounded-full overflow-hidden border-2 border-primary-container p-xs">
+<img class="w-full h-full object-cover rounded-full" data-alt="A professional headshot of a female medical director in her 40s wearing a clinical lab coat with a stethoscope. The setting is a brightly lit, sterile medical facility hallway with soft blue and white tones. Professional studio lighting highlights her friendly yet authoritative expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRWozomu4Sv5n6b_y1aitQmxCmX24OPOYnJ0RiW0jbE302ADPaGPUZhoyKylRe6YgXUrNaYw0E2luERuZvoJ8r1XoodrxHZVJmWWinWHrTAo5XilmCzrbX1r6yXmajgxsz_ctL806eht_kRMMyghFgfTwwSfIiTg2glYEis8QhOyxqHShorYFHU1VrE6L1_2dUJyWiIVjWOAyFEIusxvg-Ez65uZGe1ApspacPn_IkDQGzOcgT4mLC"/>
+</div>
+<span class="absolute bottom-1 right-1 bg-primary text-on-primary rounded-full p-xs border-2 border-white">
+<span class="material-symbols-outlined text-[16px] fill-icon">verified</span>
+</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-xs">Dr. Jane Doe</h2>
+<p class="font-label-md text-label-md text-on-surface-variant">Senior Procurement Director</p>
+<p class="font-label-sm text-label-sm text-outline mt-xs uppercase tracking-wider">St. Mary's General Hospital</p>
+<div class="mt-md pt-md border-t border-outline-variant">
+<button class="w-full bg-primary text-on-primary py-base rounded-lg font-label-md hover:bg-primary-container transition-all">
+                            View Public Profile
+                        </button>
+</div>
+</div>
+<!-- Professional Credentials Card -->
+<div class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant shadow-sm">
+<div class="flex items-center justify-between mb-md">
+<h3 class="font-label-md text-label-md text-on-surface">Professional Credentials</h3>
+<span class="material-symbols-outlined text-primary text-[20px]">badge</span>
+</div>
+<div class="space-y-md">
+<div>
+<p class="text-label-sm text-outline uppercase font-semibold">License Number</p>
+<p class="text-body-md font-mono text-on-surface">PH-992033481-NY</p>
+</div>
+<div class="flex items-center gap-base p-base bg-secondary-container rounded-lg">
+<span class="material-symbols-outlined text-on-secondary-container fill-icon">check_circle</span>
+<div>
+<p class="text-label-md text-on-secondary-container">Status: Verified</p>
+<p class="text-label-sm text-on-secondary-container/80">Valid until: 12/2025</p>
+</div>
+</div>
+<button class="w-full border border-primary text-primary py-base rounded-lg font-label-md hover:bg-primary/5 transition-all">
+                            Upload Recertification
+                        </button>
+</div>
+</div>
+</aside>
+<!-- Main Dashboard Content -->
+<div class="col-span-12 lg:col-span-9 space-y-md">
+<!-- Quick Metrics Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="bg-surface-container-lowest p-md border border-outline-variant rounded-xl shadow-sm flex items-center gap-md">
+<div class="bg-primary-container/10 p-md rounded-xl">
+<span class="material-symbols-outlined text-primary text-[32px]">inventory_2</span>
+</div>
+<div>
+<p class="text-label-md text-outline">Recent Orders</p>
+<p class="text-headline-md font-bold text-on-surface">24 Active</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-md border border-outline-variant rounded-xl shadow-sm flex items-center gap-md">
+<div class="bg-error-container/20 p-md rounded-xl">
+<span class="material-symbols-outlined text-error text-[32px]">security_update_warning</span>
+</div>
+<div>
+<p class="text-label-md text-outline">Pending Validations</p>
+<p class="text-headline-md font-bold text-error">03 Critical</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-md border border-outline-variant rounded-xl shadow-sm flex items-center gap-md">
+<div class="bg-secondary-container/20 p-md rounded-xl">
+<span class="material-symbols-outlined text-secondary text-[32px]">shield_lock</span>
+</div>
+<div>
+<p class="text-label-md text-outline">Account Security</p>
+<p class="text-headline-md font-bold text-on-surface">Secure</p>
+</div>
+</div>
+</div>
+<!-- Account Information & Notification Settings -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Account Details -->
+<section class="bg-surface-container-lowest p-lg border border-outline-variant rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-lg">
+<h3 class="font-headline-md text-headline-md text-on-surface">Account Information</h3>
+<button class="text-primary font-label-md flex items-center gap-xs hover:underline">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+                                Update
+                            </button>
+</div>
+<div class="space-y-md">
+<div class="grid grid-cols-3 gap-base">
+<span class="text-label-md text-outline">Full Name</span>
+<span class="col-span-2 text-body-md text-on-surface font-medium">Jane Henrietta Doe</span>
+</div>
+<div class="grid grid-cols-3 gap-base">
+<span class="text-label-md text-outline">Institutional Email</span>
+<span class="col-span-2 text-body-md text-on-surface font-medium">j.doe@stmarys-gen.org</span>
+</div>
+<div class="grid grid-cols-3 gap-base">
+<span class="text-label-md text-outline">Phone Number</span>
+<span class="col-span-2 text-body-md text-on-surface font-medium">+1 (555) 234-8891</span>
+</div>
+<div class="grid grid-cols-3 gap-base">
+<span class="text-label-md text-outline">Facility</span>
+<span class="col-span-2 text-body-md text-on-surface font-medium">Main Procurement HUB - West Wing</span>
+</div>
+</div>
+</section>
+<!-- Notifications -->
+<section class="bg-surface-container-lowest p-lg border border-outline-variant rounded-xl shadow-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-lg">Notification Preferences</h3>
+<div class="space-y-md">
+<div class="flex items-center justify-between p-base hover:bg-surface rounded-lg transition-colors">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-outline">mail</span>
+<div>
+<p class="text-label-md text-on-surface">Email Alerts</p>
+<p class="text-label-sm text-outline">Summary of daily activities</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between p-base hover:bg-surface rounded-lg transition-colors">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-[#25D366]">chat</span>
+<div>
+<p class="text-label-md text-on-surface">WhatsApp Notifications</p>
+<p class="text-label-sm text-outline">Urgent cold-chain &amp; safety alerts</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between p-base hover:bg-surface rounded-lg transition-colors">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-error">work_alert</span>
+<div>
+<p class="text-label-md text-on-surface">Security Alerts</p>
+<p class="text-label-sm text-outline">Login attempts from new devices</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+</div>
+<!-- Recent Activity Table -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm overflow-hidden">
+<div class="p-lg border-b border-outline-variant flex items-center justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Recent Pharmaceutical Orders</h3>
+<p class="text-body-md text-outline">Real-time status of current procurement cycles</p>
+</div>
+<button class="bg-surface-container-high text-on-surface-variant px-md py-base rounded-lg font-label-md flex items-center gap-xs hover:bg-surface-container-highest transition-all">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                            Export CSV
+                        </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface text-label-md text-outline border-b border-outline-variant">
+<th class="px-lg py-md font-semibold">Order ID</th>
+<th class="px-lg py-md font-semibold">Product Name</th>
+<th class="px-lg py-md font-semibold">Ordered Date</th>
+<th class="px-lg py-md font-semibold">Logistics Status</th>
+<th class="px-lg py-md font-semibold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-lg py-md font-mono text-primary">#ORD-2024-00122</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-base">
+<div class="w-10 h-10 bg-surface-container rounded border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A macro photograph of pharmaceutical blister packs with blue capsules. Minimalist studio lighting on a white surface, professional medical product photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBC8LMLiqwi-BbdX5QgfRTe_rgmLx9G0502cCfp6BFLW-shiXjGy47Ob4OEjWDo0FGRy1sOZuW0DCD59TbwJNDFNsA5DNDiXwPqbu0JhOE9RleDOiiVNki3dc74UJ0aTe3fGnuSEMEqItrumTLAVVh-zchguXDnnjM8JUBMO8H8X5NtH-K9jZn7aim_AUx4maDO312fzJA3AhG2hqeztnurNSt6uTzL-1YMHcNljRRpOgmiiETyy6DZ"/>
+</div>
+<div>
+<p class="text-body-md font-medium">Infliximab 100mg</p>
+<p class="text-label-sm text-outline">240 Units / Batch B-29</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md text-on-surface-variant">Oct 24, 2023</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-xs px-base py-xs rounded-full bg-blue-50 text-blue-700 text-label-sm border border-blue-200">
+<span class="material-symbols-outlined text-[14px] animate-pulse">ac_unit</span>
+                                            In Cold-Chain Transit
+                                        </span>
+</td>
+<td class="px-lg py-md text-right">
+<button class="text-primary hover:text-primary-container p-xs">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-lg py-md font-mono text-primary">#ORD-2024-00119</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-base">
+<div class="w-10 h-10 bg-surface-container rounded border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Clear glass medical vials with silver caps sitting on a clean, reflective laboratory counter. Professional pharmaceutical photography with bright clinical lighting and shallow depth of field." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEQINFLFQmnK_s5wj-mHzUQXP-Kr0_PkSySJAPfCxgv_O1Aqu85teUkE7Eue2FE1JHP2q8_Jt_8P_ZfFFAmzRm4UPLb1UEYVzwdxsE0f9JWbvyBVQcrBvGcLuPlknWOvJfgD6qxKJiWO_q9WHvqFxeMytKHuI1QwBOdMdqIsG_M9CdxZvTdd3mINCO38DHYpf9N3Q2VPGxNIfHpgncx9BXHT9tdk6npaPt2SCtpYMSxjmRLvQ8PUBj"/>
+</div>
+<div>
+<p class="text-body-md font-medium">Insulin Glargine</p>
+<p class="text-label-sm text-outline">500 Units / Batch A-41</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md text-on-surface-variant">Oct 22, 2023</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-xs px-base py-xs rounded-full bg-secondary-container/50 text-on-secondary-container text-label-sm border border-secondary">
+<span class="material-symbols-outlined text-[14px]">local_shipping</span>
+                                            Arriving Today
+                                        </span>
+</td>
+<td class="px-lg py-md text-right">
+<button class="text-primary hover:text-primary-container p-xs">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-lg py-md font-mono text-primary">#ORD-2024-00115</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-base">
+<div class="w-10 h-10 bg-surface-container rounded border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A box of pharmaceutical medication with clear dosage instructions printed in a clean sans-serif font. High-contrast clinical lighting emphasizing purity and accuracy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZxmqeAVF9l_7o6xxd6fi_vg4S2kQxMc4fboz7SXpkh6Z5WdEcvbxHm1l-hQctFg_aaqo6xlJPu3HBpuRimx2PDwk17EPPLGJsw7_d2sLWRaVtyerBxmYM17Ksta8OfLe-9ADLSlcPsxJyBt2K_Ahvonk00v7qfAf0FG1EmkLdXdzq528pLtgZamBc0XoIZyosnW38_imjusBtebbR0Hm-GKlikhfn1WPdHFGAM2FNZ7kbE_MVnT3b"/>
+</div>
+<div>
+<p class="text-body-md font-medium">Atorvastatin 40mg</p>
+<p class="text-label-sm text-outline">1000 Units / Batch K-12</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md text-on-surface-variant">Oct 20, 2023</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-xs px-base py-xs rounded-full bg-surface-container-highest text-on-surface-variant text-label-sm border border-outline-variant">
+<span class="material-symbols-outlined text-[14px]">inventory</span>
+                                            Delivered &amp; Verified
+                                        </span>
+</td>
+<td class="px-lg py-md text-right">
+<button class="text-primary hover:text-primary-container p-xs">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-base bg-surface border-t border-outline-variant text-center">
+<button class="text-primary font-label-md hover:underline">View All Historical Orders</button>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest border-t border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-desktop py-lg max-w-screen-2xl mx-auto">
+<div class="mb-md md:mb-0">
+<span class="font-headline-md text-headline-md font-extrabold text-primary">MedCatalog</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-xs">© 2024 MedCatalog Pharmaceutical Procurement. All rights reserved.</p>
+</div>
+<nav class="flex flex-wrap justify-center gap-md">
+<a class="text-label-sm text-on-surface-variant hover:text-primary transition-colors hover:underline" href="#">Privacy Policy</a>
+<a class="text-label-sm text-on-surface-variant hover:text-primary transition-colors hover:underline" href="#">Terms of Service</a>
+<a class="text-label-sm text-on-surface-variant hover:text-primary transition-colors hover:underline" href="#">Regulatory Compliance</a>
+<a class="text-label-sm text-on-surface-variant hover:text-primary transition-colors hover:underline" href="#">Contact Support</a>
+<a class="text-label-sm text-on-surface-variant hover:text-primary transition-colors hover:underline" href="#">Drug Safety Alerts</a>
+</nav>
+</div>
+</footer>
+<script>
+        // Simple micro-interactions for the switches
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const parent = this.closest('.hover\\:bg-surface');
+                if (this.checked) {
+                    parent.style.borderColor = 'var(--tw-color-primary)';
+                } else {
+                    parent.style.borderColor = 'transparent';
+                }
+            });
+        });
+
+        // Search highlight effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-2', 'ring-primary/20');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-2', 'ring-primary/20');
+        });
+    </script>
+</body></html>

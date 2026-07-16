@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MedCatalog | Suministro Farmacéutico Profesional</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#115cb9",
+                    "on-tertiary-fixed-variant": "#004e5a",
+                    "secondary-fixed": "#83fc8e",
+                    "inverse-primary": "#acc7ff",
+                    "surface-container-high": "#e7e8e9",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#2e3132",
+                    "on-primary-container": "#bbd0ff",
+                    "surface-dim": "#d9dadb",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#003f87",
+                    "on-primary-fixed-variant": "#004491",
+                    "error": "#ba1a1a",
+                    "primary-container": "#0056b3",
+                    "primary-fixed": "#d7e2ff",
+                    "on-error": "#ffffff",
+                    "tertiary": "#004954",
+                    "outline-variant": "#c2c6d4",
+                    "on-tertiary-fixed": "#001f25",
+                    "on-background": "#191c1d",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#a4eeff",
+                    "on-tertiary-container": "#6ddff7",
+                    "background": "#f8f9fa",
+                    "on-surface-variant": "#424752",
+                    "on-error-container": "#93000a",
+                    "secondary": "#006e25",
+                    "tertiary-container": "#006270",
+                    "surface-container": "#edeeef",
+                    "surface-container-highest": "#e1e3e4",
+                    "surface-bright": "#f8f9fa",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed-dim": "#acc7ff",
+                    "on-secondary-container": "#007327",
+                    "surface": "#f8f9fa",
+                    "secondary-fixed-dim": "#66df75",
+                    "tertiary-fixed-dim": "#62d6ed",
+                    "on-secondary-fixed-variant": "#00531a",
+                    "secondary-container": "#80f98b",
+                    "on-primary-fixed": "#001a40",
+                    "surface-container-low": "#f3f4f5",
+                    "on-surface": "#191c1d",
+                    "outline": "#727784",
+                    "surface-variant": "#e1e3e4",
+                    "on-secondary-fixed": "#002106",
+                    "inverse-on-surface": "#f0f1f2",
+                    "on-secondary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "xs": "4px",
+                    "sm": "12px",
+                    "margin-mobile": "16px",
+                    "lg": "48px",
+                    "md": "24px",
+                    "gutter": "24px",
+                    "base": "8px",
+                    "xl": "80px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background">
+<!-- TopNavBar -->
+<header class="bg-surface sticky top-0 z-50 border-b border-outline-variant">
+<nav class="flex justify-between items-center w-full px-margin-desktop py-base max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-md">
+<span class="font-headline-lg text-headline-lg font-bold text-primary">MedCatalog</span>
+<div class="hidden md:flex gap-md ml-lg">
+<a class="text-primary border-b-2 border-primary pb-1 font-bold font-body-md text-body-md transition-colors duration-200" href="#">Catalog</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-body-md text-body-md" href="#">Safety Tools</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-body-md text-body-md" href="#">Logistics</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-body-md text-body-md" href="#">Compliance</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-body-md text-body-md" href="#">About</a>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<button class="px-md py-xs font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors">Login</button>
+<button class="bg-primary text-on-primary px-md py-xs font-label-md text-label-md rounded-lg shadow-sm hover:opacity-90 transition-opacity">Profile</button>
+</div>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-[70vh] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center opacity-20 brightness-90 grayscale-[0.3]" data-alt="A clinical and professional wide-angle shot of a high-tech pharmaceutical storage facility with automated shelving. The lighting is sterile and bright, with a soft cool-blue color palette reflecting the 'Medical Blue' branding. The scene conveys a sense of high-end logistics and organized medical precision, using a clean-room aesthetic for the global procurement platform." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCym46Ly9YkUvpaZ6seK2maUPK6RUau5uwZQcMypvQlD74RdGItRA6C4CnyvZm3k5ROEVa7TZi9azmb9b21rh1dzyYkSEfi50D9el3X2bcUMelkRGwjtdRSw_SBcdCqmX6fxhvgmmfjxh-FSsq3xSSpYMMFGeDGZH0zE8UdQUqiwnznPFe8BWe3-S0-npp8-vQ1u2oZarpzwVLDXKTGoPGbT6ODAIcIK38lQFjUEjKft187CaDszH_Z')"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent"></div>
+</div>
+<div class="container mx-auto px-margin-desktop relative z-10 py-xl">
+<div class="max-w-2xl">
+<span class="inline-block py-xs px-sm bg-primary-fixed text-on-primary-fixed-variant rounded-full text-label-sm font-label-sm mb-md uppercase tracking-wider">Estándares de Excelencia</span>
+<h1 class="font-display text-display text-primary leading-tight mb-md">
+                        Suministro Farmacéutico Profesional de Confianza
+                    </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-lg leading-relaxed">
+                        La plataforma líder para hospitales, farmacias y centros de salud. Optimice su cadena de suministro con procesos verificados y logística de vanguardia.
+                    </p>
+<div class="flex flex-wrap gap-md">
+<button class="bg-primary-container text-white px-xl py-md rounded-lg font-label-md text-label-md shadow-md hover:bg-primary transition-all flex items-center gap-base">
+                            Explorar Catálogo
+                            <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+<button class="border border-primary text-primary px-xl py-md rounded-lg font-label-md text-label-md hover:bg-primary-fixed transition-all">
+                            Registrar Institución
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Section -->
+<section class="py-xl bg-surface-container-low border-y border-outline-variant">
+<div class="container mx-auto px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Feature 1 -->
+<div class="bg-surface p-lg rounded-xl shadow-sm border border-outline-variant hover:shadow-md transition-shadow">
+<div class="w-12 h-12 bg-secondary-container text-on-secondary-container flex items-center justify-center rounded-lg mb-md">
+<span class="material-symbols-outlined text-[32px]">verified_user</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-sm">Red de Fabricantes Verificados</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Acceso directo a laboratorios globales con auditorías rigurosas y cumplimiento normativo internacional.</p>
+</div>
+<!-- Feature 2 -->
+<div class="bg-surface p-lg rounded-xl shadow-sm border border-outline-variant hover:shadow-md transition-shadow">
+<div class="w-12 h-12 bg-tertiary-container text-on-tertiary-container flex items-center justify-center rounded-lg mb-md">
+<span class="material-symbols-outlined text-[32px]">ac_unit</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-sm">Logística Especializada</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Gestión avanzada de cadena de frío (Cold-chain) garantizando la integridad de cada producto térmico-sensible.</p>
+</div>
+<!-- Feature 3 -->
+<div class="bg-surface p-lg rounded-xl shadow-sm border border-outline-variant hover:shadow-md transition-shadow">
+<div class="w-12 h-12 bg-primary-fixed text-on-primary-fixed-variant flex items-center justify-center rounded-lg mb-md">
+<span class="material-symbols-outlined text-[32px]">qr_code_scanner</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-sm">Seguridad Garantizada</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Trazabilidad total punto a punto mediante tecnología de bloque y serialización farmacéutica avanzada.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Dashboard Preview Section -->
+<section class="py-xl bg-surface">
+<div class="container mx-auto px-margin-desktop">
+<div class="flex flex-col md:flex-row gap-xl items-center">
+<div class="w-full md:w-1/2">
+<h2 class="font-display text-display text-primary mb-md">Panel de Gestión</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-lg">
+                            Visualice su inventario, controle sus órdenes de compra y gestione aprobaciones regulatorias en una interfaz diseñada para la eficiencia clínica. 
+                        </p>
+<ul class="space-y-sm mb-lg">
+<li class="flex items-center gap-sm text-on-surface font-body-md">
+<span class="material-symbols-outlined text-secondary">check_circle</span>
+                                Monitoreo de envíos en tiempo real
+                            </li>
+<li class="flex items-center gap-sm text-on-surface font-body-md">
+<span class="material-symbols-outlined text-secondary">check_circle</span>
+                                Alertas de caducidad y stock bajo
+                            </li>
+<li class="flex items-center gap-sm text-on-surface font-body-md">
+<span class="material-symbols-outlined text-secondary">check_circle</span>
+                                Repositorio de certificados sanitarios
+                            </li>
+</ul>
+</div>
+<div class="w-full md:w-1/2 relative">
+<!-- Dashboard UI Preview -->
+<div class="bg-surface-container-highest rounded-xl p-md shadow-xl border border-outline-variant">
+<div class="bg-surface rounded-lg p-md shadow-sm mb-md flex items-center justify-between">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-cover bg-center border-2 border-primary-container" data-alt="A professional portrait of a female doctor in a white lab coat, smiling confidently. She is in a modern, brightly lit clinical office setting with medical instruments visible in the soft-focus background. The image has a clean, high-contrast aesthetic typical of medical professional directories." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAmUrSK5CUWMd5t1Q_zUjjU4tC4xBeQvbsM5xdYSDzkR2v7iIErsMONfrbup7N2MpkHxprrp7DNr5jSeDjBpMpCK_T8WN8Z9bzqTKWey3ZKNKuEaDr01dkURWBgs-JyOWwVUnJP5KJkE1soF0Thz5cmp7yilphJgMU44dua-pQxp5hDVc3KyV5WryZ_AJ8Q063ldNEDPMy1fq7tXjTo0z-Vz6puHoe8afptHlTOSGSU3tKp0htQMKle')"></div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Dr. Jane Doe</h4>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Director de Adquisiciones</p>
+</div>
+</div>
+<div class="flex gap-xs">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">settings</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-sm mb-md">
+<div class="bg-surface rounded-lg p-sm border border-outline-variant">
+<p class="text-label-sm font-label-sm text-on-surface-variant">Pedidos Activos</p>
+<p class="font-headline-md text-headline-md text-primary">12</p>
+</div>
+<div class="bg-surface rounded-lg p-sm border border-outline-variant">
+<p class="text-label-sm font-label-sm text-on-surface-variant">Presupuesto Restante</p>
+<p class="font-headline-md text-headline-md text-secondary">$45.2k</p>
+</div>
+</div>
+<div class="bg-surface rounded-lg p-sm border border-outline-variant overflow-hidden">
+<div class="flex justify-between items-center mb-xs">
+<p class="text-label-md font-label-md text-on-surface">Estado de Cadena de Frío</p>
+<span class="text-label-sm text-secondary flex items-center">Estable <span class="material-symbols-outlined ml-xs text-[14px]">sensors</span></span>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full">
+<div class="w-[85%] h-full bg-primary-container rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Floating element -->
+<div class="absolute -bottom-base -left-base glass-effect p-sm rounded-lg border border-primary-container/20 shadow-lg hidden lg:block">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+<p class="text-label-sm font-label-sm text-primary">Cumplimiento Normativo: 100%</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-xl bg-primary text-on-primary">
+<div class="container mx-auto px-margin-desktop text-center">
+<h2 class="font-headline-lg text-headline-lg mb-md">Optimice su Gestión Médica Hoy</h2>
+<p class="max-w-2xl mx-auto font-body-lg text-body-lg opacity-90 mb-lg">
+                    Únase a más de 500 instituciones de salud que ya confían en MedCatalog para sus necesidades de abastecimiento crítico.
+                </p>
+<div class="flex justify-center gap-md">
+<button class="bg-white text-primary px-xl py-md rounded-lg font-label-md text-label-md hover:bg-primary-fixed transition-colors">Solicitar Demo</button>
+<button class="border border-white text-white px-xl py-md rounded-lg font-label-md text-label-md hover:bg-white/10 transition-colors">Contáctenos</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low text-on-surface border-t border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-desktop py-lg space-y-md md:space-y-0 max-w-screen-2xl mx-auto">
+<div class="flex flex-col items-start gap-xs">
+<span class="font-headline-md text-headline-md text-on-surface">MedCatalog</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant max-w-xs">
+                    © 2024 MedCatalog. All pharmaceutical data is for professional procurement use only.
+                </p>
+</div>
+<div class="flex flex-wrap justify-center gap-md">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Regulatory Disclaimers</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Support</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Global Compliance</a>
+</div>
+</div>
+</footer>
+<script>
+        // Simple micro-interactions
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.style.transform = 'scale(0.98)';
+                button.style.opacity = '0.8';
+            });
+            button.addEventListener('mouseup', () => {
+                button.style.transform = 'scale(1)';
+                button.style.opacity = '1';
+            });
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = 'scale(1)';
+                button.style.opacity = '1';
+            });
+        });
+
+        // Sticky header background shift on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-md');
+            } else {
+                header.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body></html>
